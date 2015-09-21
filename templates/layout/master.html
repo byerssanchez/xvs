@@ -5,7 +5,6 @@
   <head>
     <title>{% block pagename %}Volunteering{% endblock %} - {{ FRIENDLY_NAME }}</title>
 
-    <link rel="stylesheet" href="{{ MEDIA_URL }}css/master.css?v=2" type="text/css"/>
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/smoothness/jquery-ui-1.8.7.custom.css" type="text/css"/>
     {% bootstrap_css %}
     {% block extracss %}{% endblock extracss %}
@@ -98,7 +97,7 @@
       </div>
       {% endif %}
       
-    <div id="content" style="clear: both;">
+    <div class="container">
 
       {% include 'notes/notes.html' %}
 

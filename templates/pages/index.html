@@ -75,7 +75,7 @@ $(function(){
 
 {% block content %}
 
-  <div class="css_left">
+  <div class="col-md-3">
 
     <table class="swish">
       {% if user.is_authenticated %}
@@ -345,7 +345,7 @@ $(function(){
     </table>
   </div>
   
-  <div style="float: left; width: 600px; padding-left: 20px;">
+  <div style="col-md-9">
 
     {# Show information to representatives that haven't been approved yet. #}
     {% if user.get_profile.is_representative and not user.get_profile.representativeprofile %}
