@@ -14,6 +14,7 @@
 # have a working, secure and usable installation.
 
 INSTANCE_NAME = "example"
+DEBUG = True
 
 ADMINS = (
     # ('Your Name', 'you@example.com'),
@@ -22,7 +23,7 @@ ADMINS = (
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = "http://example.com/static/"
+MEDIA_URL = "/media/"
 
 # Make this unique, and don't share it with anybody.
 # The recommended format is 50 random printable characters.
@@ -32,7 +33,16 @@ SECRET_KEY = None
 # to be the same as the instance name. Set the database password here.
 # If the default database configuration doesn't suit your environment, just
 # define DATABASES instead, as per standard Django configuration.
-DATABASE_PASSWORD = None
+#DATABASE_PASSWORD = None
+
+DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'xvs',
+            'USER': 'root',
+            'PASSWORD': 'root',
+            }
+        }
 
 # Anywhere that people are suggested to email support, they will be asked
 # to email this address. If XVS is providing support to end users, this should
@@ -56,6 +66,9 @@ SERVER_EMAIL = "%s@example.com" % INSTANCE_NAME
 # This is the directory that the volunteering application is contained in.
 # ie. if the volunteering application directory is /srv/aberdeen/volunteering,
 # PATH_PREFIX should be set to '/srv/aberdeen'
-PATH_PREFIX = '/srv/%s' % INSTANCE_NAME
+import os
+
+PATH_PREFIX = '/home/mauro/Projects'
+print PATH_PREFIX
 UPLOAD_ROOT = PATH_PREFIX + '/volunteering/uploads'
 

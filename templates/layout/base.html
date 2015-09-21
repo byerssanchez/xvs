@@ -1,0 +1,28 @@
+{% load url from future %}
+<!doctype html>
+<html>
+  <head>
+    <title>{% block pagename %}Volunteering{% endblock %} - {{ FRIENDLY_NAME }}</title>
+
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/master.css?v=2" type="text/css"/>
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/smoothness/jquery-ui-1.8.7.custom.css" type="text/css"/>
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    {% block extracss %}{% endblock extracss %}
+
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/init.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+    {% block extrajavascript %}{% endblock extrajavascript %}
+
+    {% include 'layout/custom_head.html' %}
+
+  </head>
+  <body class="{% block bodyclass %}{% endblock %}">
+  {% block body%}
+  {% endblock %}
+
+    </body>
+</html>
