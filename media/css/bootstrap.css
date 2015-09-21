@@ -6811,4 +6811,81 @@ button.close {
     color: #FFE;
 }
 
+.weekgrid_widget.pretty th {
+  vertical-align: middle;
+  padding: 10px;
+}
+.weekgrid_widget.pretty th.slot {
+  width: 150px;
+  text-align: right;
+  line-height: 1em;
+}
+.weekgrid_widget.pretty th.slot .times {
+  color: #AAA;
+}
+.weekgrid_widget.pretty select {
+  display: none;
+}
+.weekgrid_widget.pretty .checkbox {
+  width: 100px;
+  height: 33px;
+  margin-right: 1px;
+  margin-bottom: 1px;
+  color: white;
+  padding-top: 17px;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 10px;
+}
+.weekgrid_widget.pretty .checkbox.off {
+  background-color: #CCC;
+}
+.weekgrid_widget.pretty .checkbox.on {
+  background-color: #656565;
+}
+.weekgrid_widget.pretty .checkbox.match {
+  background-color: #656565;
+}
+.weekgrid_widget.pretty .checkbox.nomatch {
+  background-color: #A8A8A8;
+}
+.weekgrid_widget.pretty.mini {
+  margin-left: 0px;
+  font-size: 8px;
+}
+.weekgrid_widget.pretty.mini .checkbox {
+  width: 50px;
+  height: 20px;
+}
+.weekgrid_widget.pretty.mini .checkbox span {
+  display: none;
+}
+.weekgrid_widget.pretty.tiny {
+  margin-left: 0px;
+  font-size: 8px;
+}
+.weekgrid_widget.pretty.tiny .checkbox {
+  width: 40px;
+  height: 10px;
+}
+.weekgrid_widget.pretty.tiny .checkbox span {
+  display: none;
+}
+.weekgrid_widget.editable .checkbox {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  cursor: pointer;
+}
+.radiolist ul {
+  list-style-type: none;
+}
+.radiolist ul li {
+  margin: 0;
+}
+table.data.cols.datefields input {
+  width: 150px;
+}
+table.data.cols p {
+  margin-bottom: 0.2em;
+}
 /*# sourceMappingURL=bootstrap.css.map */
