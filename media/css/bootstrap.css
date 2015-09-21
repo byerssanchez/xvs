@@ -6797,4 +6797,18 @@ button.close {
     display: none !important;
   }
 }
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #FEE;
+}
+
+.navbar-inverse {
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #FFE;
+}
+
 /*# sourceMappingURL=bootstrap.css.map */

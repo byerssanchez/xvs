@@ -74,61 +74,32 @@ $(function(){
 {% endblock %}
 
 {% block content %}
-
+  <div class="row">
+  <br />
   <div class="col-md-3">
 
     <table class="swish">
       {% if user.is_authenticated %}
 
         {% if user.get_profile.is_volunteer %}
-          <tr class="section"><th>Volunteering</th></tr>
-          {% if user.get_profile.volunteerprofile %}
-            <tr>
-              <td class="button">
-                <a class="icon profile" href="{% url 'profiles.views.update' %}">Update my profile</a>
-              </td>
-            </tr>
-            {% if features.availability %}
-              <tr>
-                <td class="button">
-                  <a class="icon opportunities" href="{% url 'positions.views.match' %}">Match me to an opportunity</a>
-                </td>
-              </tr>
+          <div class="list-group">
+              <a class="list-group-item active">Volunteering</a>
+            {% if user.get_profile.volunteerprofile %}
+              <a class="list-group-item" href="{% url 'profiles.views.update' %}">Update my profile</a>
+              {% if features.availability %}
+              <a class="list-group-item" href="{% url 'positions.views.match' %}">Match me to an opportunity</a>
+              {% endif %}
+              <a class="list-group-item" href="{% url 'profiles.views.profile' user.id %}">View my volunteering CV</a>
+              <a class="list-group-item" href="{% url 'hours.views.volunteer_hours' user.id %}">Record my hours</a>
+              <a class="list-group-item" href="{% url 'profiles.views.offers' user.id %}">View my applications</a>
+              {% if features.volunteer_blogs and user.get_profile.is_volunteer %}
+              <a class="list-group-item" href="{% url 'blogs.views.blogadmin' %}">Manage my blog</a>
+              {% endif %}
+              <a class="list-group-item" href="{% url 'profiles.views.communication' %}">Communication settings</a>
+            {% else %}
+              <a class="list-group-item" href="{% url 'profiles.views.update' %}">Create my profile</a>
             {% endif %}
-            <tr>
-              <td class="button">
-                <a class="icon cv" href="{% url 'profiles.views.profile' user.id %}">View my volunteering CV</a>
-              </td>
-            </tr>
-            <tr>
-              <td class="button">
-                <a class="icon cv" href="{% url 'hours.views.volunteer_hours' user.id %}">Record my hours</a>
-              </td>
-            </tr>
-            <tr>
-              <td class="button">
-                <a class="icon applications" href="{% url 'profiles.views.offers' user.id %}">View my applications</a>
-              </td>
-            </tr>
-            <tr>
-              <td class="button">
-                <a class="icon email" href="{% url 'profiles.views.communication' %}">Communication settings</a>
-              </td>
-            </tr>
-            {% if features.volunteer_blogs and user.get_profile.is_volunteer %}
-              <tr>
-                <td class="button">
-                  <a class="icon person" href="{% url 'blogs.views.blogadmin' %}">Manage my blog</a>
-                </td>
-              </tr>
-            {% endif %}
-          {% else %}
-            <tr>
-              <td class="button">
-                <a class="icon profile" href="{% url 'profiles.views.update' %}">Create my profile</a>
-              </td>
-            </tr>
-          {% endif %}
+          </div>
         {% endif %}
         
         {% if user.get_profile.representativeprofile %}
@@ -192,108 +163,40 @@ $(function(){
     </table>
   
     {% if user.is_staff %}
-    
-      <table class="swish">
-        <tr><th>Staff Functions</th></tr>
-        <tr>
-          <td class="button">
-            <a class="icon group" href="{% url 'volunteers-list-all' %}">Volunteer list</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="button">
-            <a class="icon representative" href="{% url 'representatives-list-all' %}">Representative list</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="button">
-            <a class="icon opp_list" href="{% url 'positions-list-all' %}">
-            Opportunity list</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="button">
-            <a class="icon organisation" href="{% url 'positions.views.organisations' %}">Organisation list</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="button">
-            <a class="icon applications" href="{% url 'offers.views.recent' %}">Recent applications</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="button">
-            <a class="icon user_delete" href="{% url 'profiles.views.bulk_deactivate' %}">Deactivate students</a>
-          </td>
-        </tr>
+
+      <div class="list-group">
+        <a class="list-group-item active">Staff Functions</a>
+        <a class="list-group-item" href="{% url 'volunteers-list-all' %}">Volunteer list</a>
+        <a class="list-group-item" href="{% url 'representatives-list-all' %}">Representative list</a>
+        <a class="list-group-item" href="{% url 'positions-list-all' %}">Opportunity list</a>
+        <a class="list-group-item" href="{% url 'positions.views.organisations' %}">Organisation list</a>
+        <a class="list-group-item" href="{% url 'offers.views.recent' %}">Recent applications</a>
+        <a class="list-group-item" href="{% url 'profiles.views.bulk_deactivate' %}">Deactivate students</a>
         {% if features.site_blog and user.is_staff %}
-          <tr>
-            <td class="button">
-              <a class="icon person" href="{% url 'blogs.views.blogadmin' %}">Manage site blog</a>
-            </td>
-          </tr>
+        <a class="list-group-item" href="{% url 'blogs.views.blogadmin' %}">Manage site blog</a>
         {% endif %}
         {% if features.mailouts %}
-          <tr>
-            <td class="button">
-              <a class="icon email_add" href="{% url 'volunteers-list-action-mailout' '' %}">Create new volunteer mailout</a>
-            </td>
-          </tr>
-          <tr>
-            <td class="button">
-              <a class="icon email_add" href="{% url 'representatives-list-action-mailout' %}">Create new representative mailout</a>
-            </td>
-          </tr>
-          <tr>
-            <td class="button">
-              <a class="icon email" href="{% url 'mailouts-list-all' '' %}">Mailouts list</a>
-            </td>
-          </tr>
+        <a class="list-group-item" href="{% url 'volunteers-list-action-mailout' '' %}">Create new volunteer mailout</a>
+        <a class="list-group-item" href="{% url 'representatives-list-action-mailout' %}">Create new representative mailout</a>
+        <a class="list-group-item" href="{% url 'mailouts-list-all' '' %}">Mailouts list</a>
         {% endif %}
+      </div>
 
-      </table>
-
-      <table class="swish">
-        <tr class="section"><th>Reports</th></tr>
-
-        <tr>
-          <td class="button">
-            <a class="icon report" href="{% url 'marketing-report-all' %}">
-              Marketing report</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="button">
-            <a class="icon report" href="{% url 'reports.views.sla_check' %}">SLA report</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="button">
-            <a class="icon report" href="{% url 'reports.views.inactive_volunteers' %}">Inactive volunteer report</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="button">
-            <a class="icon report" href="{% url 'user-breakdown' %}">
-              Volunteer breakdown</a>
-          </td>
-        </tr>
+      <div class="list-group">
+        <a class="list-group-item active">Reports</a>
+        <a class="list-group-item" href="{% url 'marketing-report-all' %}">Marketing report</a>
+        <a class="list-group-item" href="{% url 'reports.views.sla_check' %}">SLA report</a>
+        <a class="list-group-item" href="{% url 'reports.views.inactive_volunteers' %}">Inactive volunteer report</a>
+        <a class="list-group-item" href="{% url 'user-breakdown' %}">Volunteer breakdown</a>
         {% if features.award %}
-        <tr>
-          <td class="button">
-            <a class="icon report" href="{% url 'reports.views.awards' %}">
-              Awards Report</a>
-          </td>
-        </tr>
+        <a class="list-group-item" href="{% url 'reports.views.awards' %}">Awards Report</a>
         {% endif %}
+      </div>
 
-      </table>  
-
-      <table class="swish">
-        <tr class="section"><th>Activity report</th></tr>
-        <tr>
-          <td>
-            <form method="GET" action="{% url 'reports.views.activity' %}">
+      <div class="list-group">
+        <a class="list-group-item">
+          <h4 class="list-group-item-heading">Activity Report</h4>
+              <form method="GET" action="{% url 'reports.views.activity' %}">
               {% csrf_token %}
               <div class="label">Start date <span class="tinyhint">Report will start at midnight on this day</span>
               </div>
@@ -305,15 +208,13 @@ $(function(){
                 <input type="submit" value="Generate activity report"/>
               </div>
             </form>
-          </td>
-        </tr>
-      </table>
+        </a>
+      </div>
 
-      <table class="swish">
-        <tr class="section"><th>Time records report</th></tr>
-        <tr>
-          <td>
-            <form method="GET" action="{% url 'reports.views.time_records' %}">
+      <div class="list-group">
+        <a class="list-group-item">
+          <h4 class="list-group-item-heading">Activity Report</h4>
+              <form method="GET" action="{% url 'reports.views.time_records' %}">
               {% csrf_token %}
               <div class="label">Start date <span class="tinyhint">Report will start at midnight on this day</span>
               </div>
@@ -325,27 +226,23 @@ $(function(){
                 <input type="submit" value="Generate time records report"/>
               </div>
             </form>
-          </td>
-        </tr>
-      </table>
-      
-    
-    {% endif %}
-  
-    <table class="swish">
-      <tr class="section"><th>Search for an opportunity</th></tr>
-      <tr>
-        <td>
-          <form onsubmit="document.location.href = '/positions/#' + escape($('#search_term').val()); return false">
+        </a>
+      </div>
+
+      <div class="list-group">
+        <a class="list-group-item">
+          <h4 class="list-group-item-heading">Search for an opportunity</h4>
+              <form onsubmit="document.location.href = '/positions/#' + escape($('#search_term').val()); return false">
             <input id="search_term"/> <input type="submit" value="Search"/>
             <p style="margin: 5px 0 0 0; font-size: 0.85em;">eg. "animals", "fundraising", "shelter"</p>
           </form>
-        </td>
-      </tr>
-    </table>
+        </a>
+      </div>
+    
+    {% endif %}
   </div>
   
-  <div style="col-md-9">
+  <div class="col-md-9">
 
     {# Show information to representatives that haven't been approved yet. #}
     {% if user.get_profile.is_representative and not user.get_profile.representativeprofile %}
@@ -522,6 +419,7 @@ $(function(){
     {% endif %}
     
     <br class="clear"/>
+  </div>
   </div>
     
 {% endblock %}
